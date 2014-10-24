@@ -27,7 +27,7 @@ if ('development' == app.get('env')) {
 }
 
 app.locals({
-    title: 'Node-Neo4j Template'    // default title
+    title: 'Cluster'    // default title
 });
 
 // Routes
@@ -42,6 +42,15 @@ app.del('/users/:id', routes.users.del);
 
 app.post('/users/:id/follow', routes.users.follow);
 app.post('/users/:id/unfollow', routes.users.unfollow);
+
+app.get('/websites', routes.websites.list);
+app.post('/websites', routes.websites.create);
+app.get('/websites/:id', routes.websites.show);
+app.post('/websites/:id', routes.websites.edit);
+app.del('/websites/:id', routes.websites.del);
+
+app.post('/websites/:id/follow', routes.websites.follow);
+app.post('/websites/:id/unfollow', routes.websites.unfollow);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening at: http://localhost:%d/', app.get('port'));

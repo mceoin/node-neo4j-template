@@ -1,5 +1,5 @@
-// user.js
-// User model logic.
+// website.js
+// Website model logic.
 
 var neo4j = require('neo4j');
 var db = new neo4j.GraphDatabase(
