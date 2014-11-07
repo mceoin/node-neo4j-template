@@ -4,10 +4,10 @@ block content
     h1 #{website.name}
 
     p
-        a(href='/websites') Back to list of websites
+        a(href='/websites') Back to everyone
 
     if following.length
-        p #{website.name} is connected to #{following.length} websites:
+        p #{website.name} is following #{following.length} websites:
         // TODO should say 'website' if only one! ;)
         ul.websites
             for other in following
@@ -17,28 +17,26 @@ block content
                         input(type='hidden', name='website[id]', value='#{other.id}')
                         input(type='submit', class='unfollow', value='x')
     else
-        p #{website.name} isn't currently connected to other websites.
+        p #{website.name} isn't following anyone currently.
 
     if others.length
         form(action='/websites/#{website.id}/follow', method='POST')
-            //- p Add someone for #{website.name} to follow:
-            p Connect it to another website:
+            p Add someone for #{website.name} to follow:
             label
                 select(name='website[id]', required)
                     option(value='')
                     for website in others
                         option(value='#{website.id}') #{website.name}
-            input(type='submit', value='Connect')
+            input(type='submit', value='Follow')
     else
-        p #{website.name} is connected to all available websites.
-        //- p There's no one else left for #{website.name} to follow!
+        p There's no one else left for #{website.name} to follow!
 
-    //- form(action='/websites/#{website.id}', method='POST')
-    //-     p Edit this website:
-    //-     input(type='text', name='name', placeholder='#{website.name}', required)
-    //-     input(type='submit', value='Update')
+    form(action='/websites/#{website.id}', method='POST')
+        p Edit this website:
+        input(type='text', name='name', placeholder='#{website.name}', required)
+        input(type='submit', value='Update')
 
-    //- form(action='/websites/#{website.id}', method='POST', onsubmit='return confirm("Are you sure?");')
-    //-     p And if you're feeling destructive…
-    //-     input(type='hidden', name='_method', value='DELETE')
-    //-     input(type='submit', value='Delete Website')
+    form(action='/websites/#{website.id}', method='POST', onsubmit='return confirm("Are you sure?");')
+        p And if you're feeling destructive…
+        input(type='hidden', name='_method', value='DELETE')
+        input(type='submit', value='Delete Website')
