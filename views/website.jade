@@ -24,7 +24,7 @@ block content
 
     if others.length
         form(action='/websites/#{website.id}/follow', method='POST')
-            p Add someone for #{website.name} to follow:
+            p Connect #{website.name} to another website:
             label
                 select(name='website[id]', required)
                     option(value='')
