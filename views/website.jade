@@ -1,13 +1,16 @@
 extends layout
 
 block content
+    hr
     h1 #{website.name}
+    hr
+    br
 
     p
         a(href='/websites') Back to everyone
 
     if following.length
-        p #{website.name} is following #{following.length} websites:
+        p #{website.name} is connected to #{following.length} websites:
         // TODO should say 'website' if only one! ;)
         ul.websites
             for other in following
@@ -17,7 +20,7 @@ block content
                         input(type='hidden', name='website[id]', value='#{other.id}')
                         input(type='submit', class='unfollow', value='x')
     else
-        p #{website.name} isn't following anyone currently.
+        p #{website.name} isn't connected to any other websites yet.
 
     if others.length
         form(action='/websites/#{website.id}/follow', method='POST')
@@ -29,7 +32,7 @@ block content
                         option(value='#{website.id}') #{website.name}
             input(type='submit', value='Follow')
     else
-        p There's no one else left for #{website.name} to follow!
+        p #{website.name} is connected to all the websites in the database!
 
     form(action='/websites/#{website.id}', method='POST')
         p Edit this website:

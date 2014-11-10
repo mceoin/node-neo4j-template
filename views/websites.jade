@@ -1,7 +1,10 @@
 extends layout
 
 block content
+    hr
     h1 Websites
+    hr
+    br
 
     if websites.length
         p Here are the current websites:
@@ -15,4 +18,5 @@ block content
     form(action='', method='POST')
         p Create a new website:
         input(type='text', name='name', placeholder='Name', required)
+        input(type='text', name='creator', placeholder='creator', required)
         input(type='submit', value='Create')

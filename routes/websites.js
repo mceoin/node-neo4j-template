@@ -1,10 +1,10 @@
-// users.js
-// Routes to CRUD users.
+// websites.js
+// Routes to CRUD websites.
 
 var Website = require('../models/website');
 
 /**
- * GET /users
+ * GET /websites
  */
 exports.list = function (req, res, next) {
     Website.getAll(function (err, websites) {
@@ -13,14 +13,22 @@ exports.list = function (req, res, next) {
             websites: websites
         });
     });
+
+    User.getAll(function (err, users) {
+        if (err) return next(err);
+        res.render('users', {
+            users: users
+        });
+    });
 };
 
 /**
- * POST /users
+ * POST /websites
  */
 exports.create = function (req, res, next) {
     Website.create({
-        name: req.body['name']
+        name: req.body['name'],
+        creator: req.body['creator']
     }, function (err, website) {
         if (err) return next(err);
         res.redirect('/websites/' + website.id);
@@ -28,7 +36,7 @@ exports.create = function (req, res, next) {
 };
 
 /**
- * GET /users/:id
+ * GET /websites/:id
  */
 exports.show = function (req, res, next) {
     Website.get(req.params.id, function (err, website) {
@@ -46,7 +54,7 @@ exports.show = function (req, res, next) {
 };
 
 /**
- * POST /users/:id
+ * POST /websites/:id
  */
 exports.edit = function (req, res, next) {
     Website.get(req.params.id, function (err, website) {
@@ -60,7 +68,7 @@ exports.edit = function (req, res, next) {
 };
 
 /**
- * DELETE /users/:id
+ * DELETE /websites/:id
  */
 exports.del = function (req, res, next) {
     Website.get(req.params.id, function (err, website) {
@@ -73,7 +81,7 @@ exports.del = function (req, res, next) {
 };
 
 /**
- * POST /users/:id/follow
+ * POST /websites/:id/follow
  */
 exports.follow = function (req, res, next) {
     Website.get(req.params.id, function (err, website) {
@@ -89,7 +97,7 @@ exports.follow = function (req, res, next) {
 };
 
 /**
- * POST /users/:id/unfollow
+ * POST /websites/:id/unfollow
  */
 exports.unfollow = function (req, res, next) {
     Website.get(req.params.id, function (err, website) {
