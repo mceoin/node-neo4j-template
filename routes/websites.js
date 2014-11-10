@@ -13,13 +13,6 @@ exports.list = function (req, res, next) {
             websites: websites
         });
     });
-
-    User.getAll(function (err, users) {
-        if (err) return next(err);
-        res.render('users', {
-            users: users
-        });
-    });
 };
 
 /**
