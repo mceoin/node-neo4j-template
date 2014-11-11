@@ -31,15 +31,6 @@ Object.defineProperty(Website.prototype, 'name', {
     }
 });
 
-Object.defineProperty(Website.prototype, 'creator', {
-    get: function () {
-        return this._node.data['creator'];
-    },
-    set: function (creator) {
-        this._node.data['creator'] = creator;
-    }
-});
-
 // public instance methods:
 
 Website.prototype.save = function (callback) {

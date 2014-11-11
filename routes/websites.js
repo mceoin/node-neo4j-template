@@ -21,7 +21,6 @@ exports.list = function (req, res, next) {
 exports.create = function (req, res, next) {
     Website.create({
         name: req.body['name'],
-        creator: req.body['creator']
     }, function (err, website) {
         if (err) return next(err);
         res.redirect('/websites/' + website.id);
