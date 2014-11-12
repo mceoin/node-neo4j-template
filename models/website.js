@@ -16,6 +16,7 @@ var Website = module.exports = function Website(_node) {
     this._node = _node;
 }
 
+
 // public instance properties:
 
 Object.defineProperty(Website.prototype, 'id', {

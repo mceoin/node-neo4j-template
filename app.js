@@ -34,15 +34,6 @@ app.locals({
 
 app.get('/', routes.site.index);
 
-app.get('/users', routes.users.list);
-app.post('/users', routes.users.create);
-app.get('/users/:id', routes.users.show);
-app.post('/users/:id', routes.users.edit);
-app.del('/users/:id', routes.users.del);
-
-app.post('/users/:id/follow', routes.users.follow);
-app.post('/users/:id/unfollow', routes.users.unfollow);
-
 app.get('/websites', routes.websites.list);
 app.post('/websites', routes.websites.create);
 app.get('/websites/:id', routes.websites.show);
@@ -51,6 +42,8 @@ app.del('/websites/:id', routes.websites.del);
 
 app.post('/websites/:id/follow', routes.websites.follow);
 app.post('/websites/:id/unfollow', routes.websites.unfollow);
+// experimental
+// app.post('websites/:id/createandfollow', routes.websites.createandfollow);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening at: http://localhost:%d/', app.get('port'));

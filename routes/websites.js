@@ -20,6 +20,7 @@ exports.list = function (req, res, next) {
  */
 exports.create = function (req, res, next) {
     Website.create({
+    // you can make arrays
         name: req.body['name'],
     }, function (err, website) {
         if (err) return next(err);
@@ -103,3 +104,23 @@ exports.unfollow = function (req, res, next) {
         });
     });
 };
+
+
+////////////////////////
+
+// /**
+//  * POST /websites/:id/createandfollow
+//  */
+// exports.createandfollow = function () {
+//     Website.create({name: req.body['name']};
+//     Website.get(req.params.id, function (err, website) {
+//         if (err) return next(err);
+//         Website.get(req.body.website.id, function (err, other) {
+//             if (err) return next(err);
+//             website.follow(other, function (err) {
+//                 if (err) return next(err);
+//                 res.redirect('/websites/' + website.id);
+//             });
+//         });
+//     });
+// };

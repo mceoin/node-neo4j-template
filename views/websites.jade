@@ -4,10 +4,17 @@ block content
     hr
     h1 Websites
     hr
+
+    form(action='', method='POST')
+        p Add a website to Cluster:
+        input(type='text', name='name', placeholder='URL', required)
+        input(type='submit', value='Add')
+
+    hr
     br
 
     if websites.length
-        p Here are the current websites:
+        p Here are the latest websites added to Cluster:
         ul.websites
             for website in websites
                 li.website
@@ -15,7 +22,3 @@ block content
     else
         p There are no websites currently.
 
-    form(action='', method='POST')
-        p Create a new website:
-        input(type='text', name='name', placeholder='Name', required)
-        input(type='submit', value='Create')

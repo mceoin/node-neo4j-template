@@ -22,11 +22,11 @@ block content
     else
         p #{website.name} isn't connected to any other websites yet.
 
-        p Connect #{website.name} to a new website!
+        //- p Connect #{website.name} to a new website!
 
     if others.length
         form(action='/websites/#{website.id}/follow', method='POST')
-            p Connect #{website.name} to another existing website:
+            p Connect #{website.name} to a website in the cluster database:
             label
                 select(name='website[id]', required)
                     option(value='')
