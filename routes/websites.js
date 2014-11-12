@@ -19,12 +19,16 @@ exports.list = function (req, res, next) {
  * POST /websites
  */
 exports.create = function (req, res, next) {
+    console.log("Website: " + Website)
     Website.create({
     // you can make arrays
         name: req.body['name'],
-    }, function (err, website) {
+    },
+    function (err, website) {
         if (err) return next(err);
-        res.redirect('/websites/' + website.id);
+        console.log("website id: " + website.id)
+        console.log("website name: " + website.name)
+        // res.redirect('/websites/' + website.id);
     });
 };
 
@@ -105,22 +109,21 @@ exports.unfollow = function (req, res, next) {
     });
 };
 
-
-////////////////////////
-
-// /**
-//  * POST /websites/:id/createandfollow
-//  */
-// exports.createandfollow = function () {
-//     Website.create({name: req.body['name']};
-//     Website.get(req.params.id, function (err, website) {
-//         if (err) return next(err);
-//         Website.get(req.body.website.id, function (err, other) {
-//             if (err) return next(err);
-//             website.follow(other, function (err) {
-//                 if (err) return next(err);
-//                 res.redirect('/websites/' + website.id);
-//             });
-//         });
-//     });
-// };
+/**
+ * POST /websites/:id
+ */
+exports.createandfollow = function (req, res, next) {
+    console.log("Website: " + Website)
+    Website.create({
+    // you can make arrays
+    // Website-function data
+        name: req.body['name'],
+    },
+    // Website-function callback
+    function (err, website) {
+        if (err) return next(err);
+        console.log("website id: " + website.id)
+        console.log("website name: " + website.name)
+        // res.redirect('/websites/' + website.id);
+    });
+};

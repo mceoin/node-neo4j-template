@@ -149,7 +149,7 @@ Website.getAll = function (callback) {
     });
 };
 
-// creates the user and persists (saves) it to the db, incl. indexing it:
+// creates the website and persists (saves) it to the db, incl. indexing it:
 Website.create = function (data, callback) {
     // construct a new instance of our class with the data, so it can
     // validate and extend it, etc., if we choose to do that in the future:

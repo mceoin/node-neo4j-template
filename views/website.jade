@@ -12,13 +12,13 @@ block content
     if following.length
         p #{website.name} is connected to #{following.length} websites:
 
-        //- ul.websites
-        //-     for other in following
-        //-         li.website
-        //-             form(action='/websites/#{website.id}/unfollow', method='POST')
-        //-                 a(href='/websites/#{other.id}') #{other.name}
-        //-                 input(type='hidden', name='website[id]', value='#{other.id}')
-        //-                 input(type='submit', class='unfollow', value='x')
+        ul.websites
+            for other in following
+                li.website
+                    form(action='/websites/#{website.id}/unfollow', method='POST')
+                        a(href='/websites/#{other.id}') #{other.name}
+                        input(type='hidden', name='website[id]', value='#{other.id}')
+                        input(type='submit', class='unfollow', value='x')
     else
         p #{website.name} isn't connected to any other websites yet.
 
@@ -37,20 +37,22 @@ block content
     hr
 
     if others.length
-        form(action='/websites/#{website.id}/createandfollow', method='POST')
+        form(action='/websites/#{website.id}', method='POST')
             p Create a new node and connect it to #{website.name}:
             input(type='text', name='name', placeholder='URL', required)
+            // i think there's something to this type='hidden', name='_method' technique
+            //- input(type='hidden', name='_method', value='DELETE')
             input(type='submit', value='Create And Follow')
 
     else
         p There's always money in the banana hammock
 
-    //- form(action='/websites/#{website.id}', method='POST')
-    //-     p Edit this website:
-    //-     input(type='text', name='name', placeholder='#{website.name}', required)
-    //-     input(type='submit', value='Update')
+    form(action='/websites/#{website.id}', method='POST')
+        p Edit this website:
+        input(type='text', name='name', placeholder='#{website.name}', required)
+        input(type='submit', value='Update')
 
-    //- form(action='/websites/#{website.id}', method='POST', onsubmit='return confirm("Are you sure?");')
-    //-     p And if you're feeling destructive…
-    //-     input(type='hidden', name='_method', value='DELETE')
-    //-     input(type='submit', value='Delete Website')
+    form(action='/websites/#{website.id}', method='POST', onsubmit='return confirm("Are you sure?");')
+        p And if you're feeling destructive…
+        input(type='hidden', name='_method', value='DELETE')
+        input(type='submit', value='Delete Website')
