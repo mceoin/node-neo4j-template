@@ -11,18 +11,16 @@ block content
 
     if following.length
         p #{website.name} is connected to #{following.length} websites:
-        // TODO should say 'website' if only one! ;)
-        ul.websites
-            for other in following
-                li.website
-                    form(action='/websites/#{website.id}/unfollow', method='POST')
-                        a(href='/websites/#{other.id}') #{other.name}
-                        input(type='hidden', name='website[id]', value='#{other.id}')
-                        input(type='submit', class='unfollow', value='x')
+
+        //- ul.websites
+        //-     for other in following
+        //-         li.website
+        //-             form(action='/websites/#{website.id}/unfollow', method='POST')
+        //-                 a(href='/websites/#{other.id}') #{other.name}
+        //-                 input(type='hidden', name='website[id]', value='#{other.id}')
+        //-                 input(type='submit', class='unfollow', value='x')
     else
         p #{website.name} isn't connected to any other websites yet.
-
-        //- p Connect #{website.name} to a new website!
 
     if others.length
         form(action='/websites/#{website.id}/follow', method='POST')
@@ -35,6 +33,17 @@ block content
             input(type='submit', value='Follow')
     else
         p #{website.name} is connected to all the websites in the database!
+
+    hr
+
+    if others.length
+        form(action='/websites/#{website.id}/createandfollow', method='POST')
+            p Create a new node and connect it to #{website.name}:
+            input(type='text', name='name', placeholder='URL', required)
+            input(type='submit', value='Create And Follow')
+
+    else
+        p There's always money in the banana hammock
 
     //- form(action='/websites/#{website.id}', method='POST')
     //-     p Edit this website:
