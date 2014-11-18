@@ -19,16 +19,16 @@ exports.list = function (req, res, next) {
  * POST /websites
  */
 exports.create = function (req, res, next) {
-    console.log("Website: " + Website)
+    // console.log("Website: " + Website)
     Website.create({
     // you can make arrays
         name: req.body['name'],
     },
     function (err, website) {
         if (err) return next(err);
-        console.log("website id: " + website.id)
-        console.log("website name: " + website.name)
-        // res.redirect('/websites/' + website.id);
+        // console.log("website id: " + website.id)
+        // console.log("website name: " + website.name)
+        res.redirect('/websites/' + website.id);
     });
 };
 
@@ -110,20 +110,19 @@ exports.unfollow = function (req, res, next) {
 };
 
 /**
- * POST /websites/:id
+ * POST /websites/:id/createandfollow
  */
 exports.createandfollow = function (req, res, next) {
-    console.log("Website: " + Website)
+    console.log("potato");
+
     Website.create({
     // you can make arrays
-    // Website-function data
         name: req.body['name'],
     },
-    // Website-function callback
     function (err, website) {
         if (err) return next(err);
         console.log("website id: " + website.id)
         console.log("website name: " + website.name)
-        // res.redirect('/websites/' + website.id);
+        res.redirect('/websites/' + website.id);
     });
 };

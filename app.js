@@ -44,7 +44,7 @@ app.post('/websites/:id/follow', routes.websites.follow);
 app.post('/websites/:id/unfollow', routes.websites.unfollow);
 
 // experimental
-app.post('websites/:id/createandfollow', routes.websites.create);
+app.post('/websites/:id/createandfollow', routes.websites.createandfollow);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening at: http://localhost:%d/', app.get('port'));
