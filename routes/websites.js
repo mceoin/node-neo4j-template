@@ -113,7 +113,8 @@ exports.unfollow = function (req, res, next) {
  * POST /websites/:id/createandfollow
  */
 exports.createandfollow = function (req, res, next) {
-    console.log("potato");
+    var paramsId = req.params.id
+    console.log ("req.params.id: " + paramsId)
 
     Website.create({
     // you can make arrays
@@ -121,8 +122,23 @@ exports.createandfollow = function (req, res, next) {
     },
     function (err, website) {
         if (err) return next(err);
+        var websiteId = website.id
+        console.log("var websiteId: " + website.id)
         console.log("website id: " + website.id)
         console.log("website name: " + website.name)
-        res.redirect('/websites/' + website.id);
+        console.log("Website variable: " + Website)
+        console.log("this: " + this)
+
+        Website.get(paramsId, function (err, website) {
+            if (err) return next(err);
+            Website.get(websiteId, function (err, other) {
+                if (err) return next(err);
+                website.follow(other, function (err) {
+                    if (err) return next(err);
+                    res.redirect('/websites/' + paramsId);
+                });
+            });
+        });
+        // res.redirect('/websites/' + website.id);
     });
 };
