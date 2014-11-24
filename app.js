@@ -33,6 +33,7 @@ app.locals({
 // Routes
 
 app.get('/', routes.site.index);
+app.post('/', routes.site.searchcluster);
 
 app.get('/websites', routes.websites.list);
 app.post('/websites', routes.websites.create);
