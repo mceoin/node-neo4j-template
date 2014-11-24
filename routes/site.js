@@ -1,3 +1,7 @@
+// site.js
+// Routes to Search cluster database
+
+var Website = require('../models/website');
 
 /*
  * GET home page.
@@ -7,25 +11,27 @@ exports.index = function(req, res){
   res.render('index');
 };
 
+/*
+ * POST home page. -> search cluster for association
+ */
 
-exports.searchcluster = function (req, res) {
-   console.log("searching cluster...", req.body)
-   req.body
+exports.searchcluster = function (req, res, next) {
+   console.log("searching cluster...", req.body, req.body.name)
+   Website
+
+   // Website.get(req.body.name, function (err, website) {
+   //      if (err) return next(err);
+   //      website.getFollowingAndOthers(function (err, following, others) {
+   //          if (err) return next(err);
+   //          res.render('website', {
+   //              website: website,
+   //              following: following,
+   //              others: others
+   //          });
+   //      });
+   //  });
+
 };
 
-// /**
-//  * GET /websites/:id
-//  */
-// exports.show = function (req, res, next) {
-//     Website.get(req.params.id, function (err, website) {
-//         if (err) return next(err);
-//         website.getFollowingAndOthers(function (err, following, others) {
-//             if (err) return next(err);
-//             res.render('website', {
-//                 website: website,
-//                 following: following,
-//                 others: others
-//             });
-//         });
-//     });
-// };
+
+// http://transverse

@@ -149,6 +149,21 @@ Website.getAll = function (callback) {
     });
 };
 
+Website.findNodeIdFromName = function (name, callback){
+    var query = [
+        'MATCH (n:`Website`{name: "http://pivotal.com"})',
+        'RETURN id(n)',
+        ].join('\n');
+        // callback
+        console.log(query)
+
+}
+
+
+
+
+// MATCH (n:`Website`{name: "http://pivotal.com"}) RETURN n
+
 // creates the website and persists (saves) it to the db, incl. indexing it:
 Website.create = function (data, callback) {
     // construct a new instance of our class with the data, so it can
