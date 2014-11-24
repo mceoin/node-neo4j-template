@@ -4,9 +4,14 @@ block content
     h1= title
 
     p.
-        Make connections between websites.
+        Find connections between websites.
+    form(action='')
+        //- | Search Cluster:
+        input(class='clusterSearch', type='search', name='clusterSearch', placeholder='http://')
+        br
+        input(type='submit', value='Cluster Search')
 
     p
         br
         strong
-            a(href='/websites') Get started
+            a(href='/websites') Potter about.

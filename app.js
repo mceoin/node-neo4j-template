@@ -43,7 +43,6 @@ app.del('/websites/:id', routes.websites.del);
 app.post('/websites/:id/follow', routes.websites.follow);
 app.post('/websites/:id/unfollow', routes.websites.unfollow);
 
-// experimental
 app.post('/websites/:id/createandfollow', routes.websites.createandfollow);
 
 http.createServer(app).listen(app.get('port'), function(){

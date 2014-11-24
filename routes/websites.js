@@ -38,7 +38,6 @@ exports.create = function (req, res, next) {
 exports.show = function (req, res, next) {
     Website.get(req.params.id, function (err, website) {
         if (err) return next(err);
-        // TODO also fetch and show followers? (not just follow*ing*)
         website.getFollowingAndOthers(function (err, following, others) {
             if (err) return next(err);
             res.render('website', {
@@ -113,32 +112,25 @@ exports.unfollow = function (req, res, next) {
  * POST /websites/:id/createandfollow
  */
 exports.createandfollow = function (req, res, next) {
+    // params of the new node being created
     var paramsId = req.params.id
-    console.log ("req.params.id: " + paramsId)
-
     Website.create({
-    // you can make arrays
         name: req.body['name'],
     },
     function (err, website) {
         if (err) return next(err);
+        // website id of page you are on.
         var websiteId = website.id
-        console.log("var websiteId: " + website.id)
-        console.log("website id: " + website.id)
-        console.log("website name: " + website.name)
-        console.log("Website variable: " + Website)
-        console.log("this: " + this)
-
         Website.get(paramsId, function (err, website) {
             if (err) return next(err);
             Website.get(websiteId, function (err, other) {
                 if (err) return next(err);
                 website.follow(other, function (err) {
                     if (err) return next(err);
+                    // redirect back to original website
                     res.redirect('/websites/' + paramsId);
                 });
             });
         });
-        // res.redirect('/websites/' + website.id);
     });
 };
