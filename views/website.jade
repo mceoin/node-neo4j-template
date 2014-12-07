@@ -1,44 +1,45 @@
 extends layout
 
 block content
+    a(href='/websites')
+        img.beluga-logo-nav(src='/beluga_icon.png', alt='Beluga')
+    span
+    form(action='/', method='POST')
+        //- | Search Cluster:
+        input.navSearch(type='search', name='name', placeholder="#{website.name}")
+        span
+        input.search-icon(type='submit', value='search')
+    br
     hr
-    h1 #{website.name}
-    hr
+    //- h1 #{website.name}
     br
 
-    p
-        a(href='/websites') Back to everyone
+    //- p
+    //-     a(href='/websites') Back to everyone
 
     if following.length
-        p #{website.name} is connected to #{following.length} websites:
 
-        ul.websites
-            for other in following
-                li.website
-                    form(action='/websites/#{website.id}/unfollow', method='POST')
-                        a(href='/websites/#{other.id}') #{other.name}
-                        input(type='hidden', name='website[id]', value='#{other.id}')
-                        input(type='submit', class='unfollow', value='x')
+        p.result-title #{following.length} results:
+
+
+        for other in following
+            a(href='/websites/#{other.id}')
+                .result-container #{other.name}
+            br
+
+        //- ul.websites
+        //-     for other in following
+        //-         li.website
+        //-             a(href='/websites/#{other.id}') #{other.name}
     else
         p #{website.name} isn't connected to any other websites yet.
 
-    if others.length
-        form(action='/websites/#{website.id}/follow', method='POST')
-            p Connect #{website.name} to a website in the cluster database:
-            label
-                select(name='website[id]', required)
-                    option(value='')
-                    for website in others
-                        option(value='#{website.id}') #{website.name}
-            input(type='submit', value='Follow')
-    else
-        p #{website.name} is connected to all the websites in the database!
 
     hr
 
     if others.length
         form(action='/websites/#{website.id}/createandfollow', method='POST')
-            p Create a new node and connect it to #{website.name}:
+            p Create another connection to #{website.name}:
             input(type='text', name='name', placeholder='URL', required)
             input(type='submit', value='Create And Follow')
 
@@ -54,3 +55,23 @@ block content
     //-     p And if you're feeling destructive…
     //-     input(type='hidden', name='_method', value='DELETE')
     //-     input(type='submit', value='Delete Website')
+
+
+                    //- delete route
+                    //- form(action='/websites/#{website.id}/unfollow', method='POST')
+                    //-     a(href='/websites/#{other.id}') #{other.name}
+                    //-     input(type='hidden', name='website[id]', value='#{other.id}')
+                    //-     input(type='submit', class='unfollow', value='x')
+
+
+    //- if others.length
+    //-     form(action='/websites/#{website.id}/follow', method='POST')
+    //-         p Connect #{website.name} to a website in the cluster database:
+    //-         label
+    //-             select(name='website[id]', required)
+    //-                 option(value='')
+    //-                 for website in others
+    //-                     option(value='#{website.id}') #{website.name}
+    //-         input(type='submit', value='Follow')
+    //- else
+    //-     p #{website.name} is connected to all the websites in the database!

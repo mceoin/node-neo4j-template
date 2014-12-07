@@ -24,14 +24,28 @@ body {
 a {
   color: #00b7ff;
 }
+
 strong a {
   padding: 0 0.25em;
   background-color: #ffa;
 }
 
+hr {
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+
 .beluga-logo-main {
   height: 170px;
   width: 170px;
+}
+
+.beluga-logo-nav {
+  height: 46px;
+  width: 46px;
+  padding-top: 7px;
+  padding-left: 3px;
 }
 
 .title {
@@ -41,13 +55,16 @@ strong a {
   margin-top: 10px;
 }
 
-.tagline {
-  margin-top: 50px;
-  color: grey;
-  /*font-style: italic;*/
-  font-family: cursive;
-  font-size: 18px;
+
+.homepage {
+  padding-top: 100px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
+
+/* ----------- Search forms & buttons --------*/
 
 .clusterSearch {
   width: 560px;
@@ -56,12 +73,11 @@ strong a {
   -webkit-appearance: none;
 }
 
-.homepage {
-  padding-top: 100px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+.navSearch {
+  width: 460px;
+  height: 45px;
+  font-size: 1.14em;
+  -webkit-appearance: none;
 }
 
 .search-button {
@@ -92,5 +108,34 @@ strong a {
 }
 
 .potter-about:hover {
-  box-shadow: .5px .5px .5px #FFBD5C;
+  box-shadow: .5px .5px #FFBD5C;
+}
+
+.search-icon {
+  height: 45px;
+  /*width: 45px;*/
+  font-size: 1.14em;
+  border-color: rgba(0,0,0,0.1);
+  color: #FEFEFE;
+  /*background-color: #99D6FF;*/
+  background-color: #60AE50;
+  border: 1px, solid;
+   -webkit-appearance: none;
+}
+
+/* ----------- Website Page --------*/
+
+.result-title {
+  color: red;
+}
+
+.result-container {
+  height: 80px;
+  width: 615px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.result-container:hover{
+  background-color: beige;
 }
