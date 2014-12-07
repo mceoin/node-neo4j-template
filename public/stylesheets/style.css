@@ -1,7 +1,26 @@
-body {
-  padding: 50px;
+/*body {
+  padding-top: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}*/
+
+.colorstripe{
+  background-color: #4C90D9;
+  width: 100%;
+  height: 4px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
 }
+
+body {
+  background-color: #FEFEFE;
+}
+
 a {
   color: #00b7ff;
 }
@@ -10,7 +29,68 @@ strong a {
   background-color: #ffa;
 }
 
+.beluga-logo-main {
+  height: 170px;
+  width: 170px;
+}
+
+.title {
+  font: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 40px;
+  color: #555;
+  margin-top: 10px;
+}
+
+.tagline {
+  margin-top: 50px;
+  color: grey;
+  /*font-style: italic;*/
+  font-family: cursive;
+  font-size: 18px;
+}
+
 .clusterSearch {
-  width: 572px;
-  height: 30px;
+  width: 560px;
+  height: 45px;
+  font-size: 1.14em;
+  -webkit-appearance: none;
+}
+
+.homepage {
+  padding-top: 100px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.search-button {
+  font-size: 12px;
+  font-weight: bold;
+  border-color: rgba(0,0,0,0.1);
+  color: #444;
+  /*background-color: #99D6FF;*/
+  background-color: #F2F0F1;
+  border: 1px, solid;
+  padding: 5px 10px;
+  margin: 20px 7px 0px 7px;
+}
+
+.search-button:hover {
+  box-shadow: .5px .5px #4C90D9;
+}
+
+.potter-about {
+  font-size: 12px;
+  font-weight: bold;
+  border-color: rgba(0,0,0,0.1);
+  /*background-color: #FFBD5C;*/
+  background-color: #F2F0F1;
+  border: 1px, solid;
+  padding: 5px 10px;
+  margin: 10px 7px 0px 7px;
+}
+
+.potter-about:hover {
+  box-shadow: .5px .5px .5px #FFBD5C;
 }

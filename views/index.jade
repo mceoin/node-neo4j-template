@@ -1,20 +1,16 @@
 extends layout
 
 block content
+    section.homepage
+        img.beluga-logo-main(src='/beluga_icon.png', alt='Beluga')
+        h1.title= title
 
-    img(src='/beluga_icon.png', alt='Beluga', height='233', width='232')
+        form(action='/', method='POST')
+            //- | Search Cluster:
+            input.clusterSearch(type='search', name='name', placeholder='http://')
+            br
+            input.search-button(type='submit', value='Beluga Search')
+            input.potter-about(type='button', value='Potter About', onclick="window.location.href='/websites'")
 
-    h1= title
-
-    p.
-        Find connections between websites.
-    form(action='/', method='POST')
-        //- | Search Cluster:
-        input(class='clusterSearch', type='search', name='name', placeholder='http://')
-        br
-        input(type='submit', value='Cluster Search')
-
-    p
-        br
-        strong
-            a(href='/websites') Potter about.
+        //- p.tagline.
+            Find connections between websites

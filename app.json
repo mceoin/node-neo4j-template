@@ -1,5 +1,6 @@
 {
   "name": "Cluster",
+  "beluga_logo": "/beluga_icon.png",
   "description": "Find connections between websites.",
   "website": "https://github.com/mceoin/node-neo4j-template",
   "keywords": ["node", "neo4j"],

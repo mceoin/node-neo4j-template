@@ -22,9 +22,7 @@ exports.searchcluster = function (req, res, next) {
 
 
    Website.findNodeIdFromName(nodeName, function(err, results){
-      var nodeId = results[0]['id(n)']
-            console.log(err, results, "exports.searchcluster returned these")
-            // res.send(results)
+      var nodeId = results[0]['id(n)'] // get the id of the first result
 
           Website.get(nodeId, function (err, website) {
             console.log(err, website, "line 30 works!")
