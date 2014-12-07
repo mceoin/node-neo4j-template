@@ -31,9 +31,17 @@ app.locals({
 });
 
 // Routes
+////////////// routes can take strings or functions. make these for reusable things, like
+// var eoinrules = function(req, res, next, id){
+//   console.log("dude, I rule!");
+//   // res.send("potato pie");
+//   req.eoinrules = "Magic Jeff"
+//   next()
+///////// by the way, that id param actually comes from e.g. app.del('/websites/:id'). If no :id, this won't execute and will skip to next function.
+// }
 
 app.get('/', routes.site.index);
-app.post('/', routes.site.searchcluster);
+app.post('/' , routes.site.searchcluster);
 
 app.get('/websites', routes.websites.list);
 app.post('/websites', routes.websites.create);

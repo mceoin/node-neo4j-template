@@ -150,29 +150,32 @@ Website.getAll = function (callback) {
 };
 
 ///// experimental -> you need to add a name here.
-Website.findNodeIdFromName = function (nodeName){
+Website.findNodeIdFromName = function (nodeName, callback){
     // find node
+    console.log(typeof callback, "typeof check")
     var query = [
-        'MATCH (n:`Website`{name: '+nodeName+'})',
+        'MATCH (n:`Website`{name: "'+nodeName+'"})',
         'RETURN id(n)',
         ].join('\n');
-        // callback
-        console.log(query)
 
-    // get website based on node
+      console.log(query)
 
+       db.query(query, null, function (err, results) { // 3rd parameter function is the callback.
+        console.log(err, results, "DB Query Success")
 
-   Website.get = function (id, callback) {
-        db.getNodeById(id, function (err, node) {
-            if (err) return callback(err);
-            callback(null, new Website(node));
-        });
-    };
-}
+        if (err !== null) { // this check is true means there is a an error!
+
+            return callback(err, null) // if this gets hit there is an error
+        };
+
+        console.log("this fired because there was no callback error")
+
+        callback(null, results)
+
+    });
+
+    }
 //// end experimental
-
-
-// MATCH (n:`Website`{name: "http://pivotal.com"}) RETURN n
 
 // creates the website and persists (saves) it to the db, incl. indexing it:
 Website.create = function (data, callback) {
