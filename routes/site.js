@@ -16,8 +16,9 @@ exports.index = function(req, res){
  */
 
 exports.searchcluster = function (req, res, next) {
-   console.log("searching cluster...", req.body, req.body.name)
-   Website
+   console.log("searching cluster...", req.body)
+   var nodeName = req.body.name
+   Website.findNodeIdFromName(nodeName)
 
    // Website.get(req.body.name, function (err, website) {
    //      if (err) return next(err);
@@ -32,6 +33,3 @@ exports.searchcluster = function (req, res, next) {
    //  });
 
 };
-
-
-// http://transverse

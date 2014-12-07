@@ -27,7 +27,7 @@ if ('development' == app.get('env')) {
 }
 
 app.locals({
-    title: 'Cluster'    // default title
+    title: 'Beluga'    // default title
 });
 
 // Routes

@@ -149,17 +149,27 @@ Website.getAll = function (callback) {
     });
 };
 
-Website.findNodeIdFromName = function (name, callback){
+///// experimental -> you need to add a name here.
+Website.findNodeIdFromName = function (nodeName){
+    // find node
     var query = [
-        'MATCH (n:`Website`{name: "http://pivotal.com"})',
+        'MATCH (n:`Website`{name: '+nodeName+'})',
         'RETURN id(n)',
         ].join('\n');
         // callback
         console.log(query)
 
+    // get website based on node
+
+
+   Website.get = function (id, callback) {
+        db.getNodeById(id, function (err, node) {
+            if (err) return callback(err);
+            callback(null, new Website(node));
+        });
+    };
 }
-
-
+//// end experimental
 
 
 // MATCH (n:`Website`{name: "http://pivotal.com"}) RETURN n
