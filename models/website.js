@@ -164,13 +164,12 @@ Website.findNodeIdFromName = function (nodeName, callback){
         console.log(err, results, "DB Query Success")
 
         if (err !== null) { // this check is true means there is a an error!
-
             return callback(err, null) // if this gets hit there is an error
         };
-
         console.log("this fired because there was no callback error")
 
         callback(null, results)
+
 
     });
 

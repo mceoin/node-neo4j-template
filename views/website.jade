@@ -1,14 +1,13 @@
 extends layout
 
 block content
-    a(href='/websites')
-        img.beluga-logo-nav(src='/beluga_icon.png', alt='Beluga')
-    span
-    form(action='/', method='POST')
-        //- | Search Cluster:
-        input.navSearch(type='search', name='name', placeholder="#{website.name}")
-        span
-        input.search-icon(type='submit', value='search')
+    .nav
+        a.left(href='/')
+            img.beluga-logo-nav(src='/beluga_icon.png', alt='Beluga')
+        form.left(action='/', method='POST')
+            //- | Search Cluster:
+            input.navSearch(type='search', name='name', placeholder="#{website.name}")
+            input.search-icon(type='submit', value='search')
     br
     hr
     //- h1 #{website.name}
@@ -18,33 +17,33 @@ block content
     //-     a(href='/websites') Back to everyone
 
     if following.length
+        ul
+            li
+                .results
+                    p.result-total #{following.length} results:
 
-        p.result-title #{following.length} results:
+
+                    for other in following
+                        .result-container
+                            a(href='/websites/#{other.id}')
+                                p.result-title #{other.name}
+                            p.result-meta Wes Anderson wolf mumblecore ethical, four loko kogi kale chips photo booth Kickstarter taxidermy tousled pork belly fashion axe. Paleo PBR&B twee, Brooklyn Tumblr locavore
+            li
+                section.results-right-column
+                    if others.length
+                        form(action='/websites/#{website.id}/createandfollow', method='POST')
+                            input.add-connection-button(type='submit', value='+')
+                            input.add-connection-form(type='text', name='name', placeholder='Add Connection', required)
+                    else
+                        p There's always money in the banana hammock
 
 
-        for other in following
-            a(href='/websites/#{other.id}')
-                .result-container #{other.name}
-            br
-
-        //- ul.websites
-        //-     for other in following
-        //-         li.website
-        //-             a(href='/websites/#{other.id}') #{other.name}
     else
         p #{website.name} isn't connected to any other websites yet.
 
 
-    hr
 
-    if others.length
-        form(action='/websites/#{website.id}/createandfollow', method='POST')
-            p Create another connection to #{website.name}:
-            input(type='text', name='name', placeholder='URL', required)
-            input(type='submit', value='Create And Follow')
 
-    else
-        p There's always money in the banana hammock
 
     //- form(action='/websites/#{website.id}', method='POST')
     //-     p Edit this website:
@@ -75,3 +74,10 @@ block content
     //-         input(type='submit', value='Follow')
     //- else
     //-     p #{website.name} is connected to all the websites in the database!
+
+
+    //- if others.length
+    //-     form(action='/websites/#{website.id}/createandfollow', method='POST')
+    //-         p Create another connection to #{website.name}:
+    //-         input(type='text', name='name', placeholder='URL', required)
+    //-         input(type='submit', value='Create And Follow')

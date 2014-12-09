@@ -17,15 +17,15 @@ exports.index = function(req, res){
 
 exports.searchcluster = function (req, res, next) {
    console.log("searching cluster...", req.body)
-
    var nodeName = req.body.name;
 
-
    Website.findNodeIdFromName(nodeName, function(err, results){
-      var nodeId = results[0]['id(n)'] // get the id of the first result
 
+    if (results !== null) {
+      var nodeId = results[0]['id(n)']
+        // get the id of the first result
           Website.get(nodeId, function (err, website) {
-            console.log(err, website, "line 30 works!")
+            console.log(err, website)
               if (err) return next(err);
               website.getFollowingAndOthers(function (err, following, others) {
                   if (err) return next(err);
@@ -36,6 +36,20 @@ exports.searchcluster = function (req, res, next) {
                   });
               });
        }); // Website.get end, purpose is to render webpage from id
+      } // end if (results !== null)
+      else {
+          Website.create({ // if search result doesn't exist - create one!
+              // you can make arrays
+                  name: nodeName,
+              },
+              function (err, website) {
+                  if (err) return next(err);
+                  // console.log("website id: " + website.id)
+                  // console.log("website name: " + website.name)
+                  res.redirect('/websites/' + website.id);
+              });
+            } // end else statement
+
    });
 };
 

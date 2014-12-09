@@ -1,24 +1,25 @@
 extends layout
 
 block content
-    hr
-    h1 Websites
-    hr
-
-    form(action='', method='POST')
-        p Add a website to Cluster:
-        input(type='text', name='name', placeholder='URL', required)
-        input(type='submit', value='Add')
-
-    hr
+    .nav
+        a.left(href='/')
+            img.beluga-logo-nav(src='/beluga_icon.png', alt='Beluga')
+        form.left(action='', method='POST')
+            //- | Search Cluster:
+            input.navAdd(type='text', name='name', placeholder='Add a website...', required)
+            input.add-icon(type='submit', value='Add')
     br
+    hr
+
+    h1 Websites
 
     if websites.length
         p Here are the latest websites added to Cluster:
         ul.websites
             for website in websites
-                li.website
-                    a(href='/websites/#{website.id}') #{website.name}
+                li
+                    .website
+                        a(href='/websites/#{website.id}') #{website.name}
     else
         p There are no websites currently.
 
