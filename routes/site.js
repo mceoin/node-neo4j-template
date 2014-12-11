@@ -44,8 +44,6 @@ exports.searchcluster = function (req, res, next) {
               },
               function (err, website) {
                   if (err) return next(err);
-                  // console.log("website id: " + website.id)
-                  // console.log("website name: " + website.name)
                   res.redirect('/websites/' + website.id);
               });
             } // end else statement

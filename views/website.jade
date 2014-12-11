@@ -40,8 +40,12 @@ block content
 
     else
         p #{website.name} isn't connected to any other websites yet.
-
-
+        p Lucky you - you could be the first to make a connection!
+        section.results-right-column
+            if others.length
+                form(action='/websites/#{website.id}/createandfollow', method='POST')
+                    input.add-connection-button(type='submit', value='+')
+                    input.add-connection-form(type='text', name='name', placeholder='Add Connection', required)
 
 
 
